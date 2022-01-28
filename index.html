@@ -10,20 +10,22 @@
   </head>
   <body>
     <div class="container">
-      <form action="example.com/path" method="post">
+      <p>* required</p>
+      <form action="/" method="post">
         <div class="wrapper">
-          <label for="user_email">Email-address</label>
+          <label for="user_email">Email-address*</label>
           <input
             type="email"
             id="user_email"
             name="email"
             placeholder="you@example.com"
             required
+            minlength="8"
           />
           <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
-          <label for="user_country">Country</label>
+          <label for="user_country">Country*</label>
           <input
             type="text"
             id="user_country"
@@ -34,9 +36,9 @@
           <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
-          <label for="user_zip">ZIP-Code</label>
+          <label for="user_zip">ZIP-Code*</label>
           <input
-            type="number"
+            type="text"
             id="user_zip"
             name="zip"
             placeholder="ZIP-Code"
@@ -45,18 +47,19 @@
           <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
-          <label for="user_password">Password</label>
+          <label for="user_password">Password*</label>
           <input
             type="password"
             id="user_password"
             name="password"
-            placeholder="must be between 8-16 characters"
+            placeholder="Password"
             required
+            patern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           />
           <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
-          <label for="user_confirm_password"> Confirm password</label>
+          <label for="user_confirm_password"> Confirm password*</label>
           <input
             type="password"
             id="user_confirm_password"
@@ -66,11 +69,20 @@
           />
           <span class="error" aria-live="polite"></span>
         </div>
-        <div>
-          <wrapper
-            ><button id="resetBtn" class="resetBtn">Reset</button
-            ><button id="submitBtn" class="submitBtn">Submit</button></wrapper
-          >
+        <div class="button-wrapper">
+          <button id="resetBtn" class="resetBtn" type="reset">Reset</button>
+          <button id="submitBtn" class="submitBtn" type="submit">Submit</button>
+        </div>
+        <div id="message">
+          <h3>Password must contain the following:</h3>
+          <p id="letter" class="invalid">A lowercase letter</p>
+          <p id="capital" class="invalid">A capital (uppercase) letter</p>
+          <p id="number" class="invalid">A number</p>
+          <p id="length" class="invalid">Minimum 8 characters</p>
+          <p id="actualLength" class="invalid"></p>
+        </div>
+        <div id="confirmText">
+          <p id="confirmPass" class="invalid"></p>
         </div>
       </form>
     </div>

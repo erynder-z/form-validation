@@ -9,41 +9,69 @@ p * {
   display: block;
 }
 
-input[type='email'] {
+input {
   -webkit-appearance: none;
   appearance: none;
-
   width: 100%;
   border: 1px solid #333;
   margin: 0;
-
   font-family: inherit;
   font-size: 90%;
-
   box-sizing: border-box;
 }
 
 input:invalid {
   border-color: #900;
-  background-color: #fdd;
+  background: #fdd;
 }
 
 input:focus:invalid {
   outline: none;
 }
 
+input:valid {
+  border-color: black;
+  background: rgb(169, 231, 169);
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
 .error {
   width: 100%;
   padding: 0;
-
   font-size: 80%;
   color: white;
-  background-color: #900;
+  background: #900;
   border-radius: 0 0 5px 5px;
-
   box-sizing: border-box;
 }
 
 .error.active {
   padding: 0.3em;
+}
+
+#message {
+  display: none;
+}
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
 }
