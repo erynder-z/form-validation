@@ -22,7 +22,6 @@
             required
             minlength="8"
           />
-          <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
           <label for="user_country">Country*</label>
@@ -32,8 +31,8 @@
             name="country"
             placeholder="Your country"
             required
+            pattern="[A-Za-z]{1,}"
           />
-          <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
           <label for="user_zip">ZIP-Code*</label>
@@ -43,8 +42,8 @@
             name="zip"
             placeholder="ZIP-Code"
             required
+            pattern="[a-zA-Z0-9_.-]{1,}"
           />
-          <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
           <label for="user_password">Password*</label>
@@ -56,7 +55,6 @@
             required
             patern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           />
-          <span class="error" aria-live="polite"></span>
         </div>
         <div class="wrapper">
           <label for="user_confirm_password"> Confirm password*</label>
@@ -67,12 +65,14 @@
             placeholder="must be same as above"
             required
           />
-          <span class="error" aria-live="polite"></span>
         </div>
         <div class="button-wrapper">
           <button id="resetBtn" class="resetBtn" type="reset">Reset</button>
           <button id="submitBtn" class="submitBtn" type="submit">Submit</button>
         </div>
+        <div id="emailMsg"></div>
+        <div id="countryMsg"></div>
+        <div id="zipMsg"></div>
         <div id="message">
           <h3>Password must contain the following:</h3>
           <p id="letter" class="invalid">A lowercase letter</p>

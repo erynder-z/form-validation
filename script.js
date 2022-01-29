@@ -1,16 +1,17 @@
 const validateEmail = (() => {
   const form = document.getElementsByTagName('form')[0];
   const email = document.getElementById('user_email');
-  const emailError = document.querySelector('#user_email + span.error');
+  const emailError = document.getElementById('emailMsg');
 
-  email.addEventListener('input', (event) => {
+  email.onblur = () => {
     if (email.validity.valid) {
       emailError.textContent = '';
-      emailError.className = 'error';
+      email.className = '';
+      email.className = 'valid-field';
     } else {
       showError();
     }
-  });
+  };
 
   form.addEventListener('submit', (event) => {
     if (!email.validity.valid) {
@@ -27,7 +28,74 @@ const validateEmail = (() => {
     } else if (email.validity.tooShort) {
       emailError.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`;
     }
-    emailError.className = 'error active';
+    emailError.className = 'invalid';
+    email.className = 'invalid-field';
+  }
+})();
+
+const validateCountry = (() => {
+  const form = document.getElementsByTagName('form')[0];
+  const country = document.getElementById('user_country');
+  const countryError = document.getElementById('countryMsg');
+
+  country.onblur = () => {
+    if (country.validity.valid) {
+      countryError.textContent = '';
+      country.className = '';
+      country.className = 'valid-field';
+    } else {
+      showError();
+    }
+  };
+
+  form.addEventListener('submit', (event) => {
+    if (!country.validity.valid) {
+      showError();
+      event.preventDefault();
+    }
+  });
+
+  function showError() {
+    if (country.validity.patternMismatch) {
+      countryError.textContent = 'You need to enter your country.';
+    } else if (country.validity.valueMissing) {
+      countryError.textContent = 'You need to enter your country.';
+    }
+    countryError.className = 'invalid';
+    country.className = 'invalid-field';
+  }
+})();
+
+const validateZip = (() => {
+  const form = document.getElementsByTagName('form')[0];
+  const zip = document.getElementById('user_zip');
+  const zipError = document.getElementById('zipMsg');
+
+  zip.onblur = () => {
+    if (zip.validity.valid) {
+      zipError.textContent = '';
+      zip.className = '';
+      zip.className = 'valid-field';
+    } else {
+      showError();
+    }
+  };
+
+  form.addEventListener('submit', (event) => {
+    if (!zip.validity.valid) {
+      showError();
+      event.preventDefault();
+    }
+  });
+
+  function showError() {
+    if (zip.validity.patternMismatch) {
+      zipError.textContent = 'You need to enter your zip-code.';
+    } else if (zip.validity.valueMissing) {
+      zipError.textContent = 'You need to enter your zip-code.';
+    }
+    zipError.className = 'invalid';
+    zip.className = 'invalid-field';
   }
 })();
 
@@ -38,17 +106,18 @@ const validatePassword = (() => {
   const capital = document.getElementById('capital');
   const number = document.getElementById('number');
   const length = document.getElementById('length');
+  const message = document.getElementById('message');
   let letterValid;
   let capitalValid;
   let numberValid;
   let lengthValid;
 
   password.onfocus = () => {
-    document.getElementById('message').style.display = 'block';
+    message.style.display = 'block';
   };
 
   password.onblur = () => {
-    document.getElementById('message').style.display = 'none';
+    message.style.display = 'none';
   };
 
   password.addEventListener('input', (event) => {
@@ -97,10 +166,15 @@ const validatePassword = (() => {
       lengthValid = false;
       errorMsg.textContent = `You entered ${password.value.length} characters`;
     }
-    if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
-      console.log('invalid');
-    }
   });
+
+  password.onblur = () => {
+    if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
+      password.className = 'invalid-field';
+    }
+    message.style.display = 'none';
+    password.className = 'valid-field';
+  };
 
   form.addEventListener('submit', (event) => {
     if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
@@ -119,12 +193,13 @@ const validateConfirmPassword = (() => {
     error.style.display = 'none';
   };
 
-  confirmPassword.onkeyup = () => {
+  confirmPassword.addEventListener('input', () => {
     if (password.value === confirmPassword.value) {
       error.style.display = 'none';
+      confirmPassword.className = 'valid-field';
     } else {
       error.style.display = 'block';
-      error.textContent = 'Must be the same as above';
+      error.textContent = 'Passwords do not match';
     }
-  };
+  });
 })();

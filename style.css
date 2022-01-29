@@ -20,18 +20,8 @@ input {
   box-sizing: border-box;
 }
 
-input:invalid {
-  border-color: #900;
-  background: #fdd;
-}
-
 input:focus:invalid {
   outline: none;
-}
-
-input:valid {
-  border-color: black;
-  background: rgb(169, 231, 169);
 }
 
 .button-wrapper {
@@ -74,4 +64,12 @@ input:valid {
 .invalid:before {
   position: relative;
   left: -35px;
+}
+
+.invalid-field {
+  border: solid 5px crimson;
+}
+
+.valid-field {
+  border: solid 5px green;
 }
