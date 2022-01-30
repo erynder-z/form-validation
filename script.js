@@ -3,6 +3,10 @@ const validateEmail = (() => {
   const email = document.getElementById('user_email');
   const emailError = document.getElementById('emailMsg');
 
+  email.onfocus = () => {
+    email.className = '';
+  };
+
   email.onblur = () => {
     if (email.validity.valid) {
       emailError.textContent = '';
@@ -38,6 +42,10 @@ const validateCountry = (() => {
   const country = document.getElementById('user_country');
   const countryError = document.getElementById('countryMsg');
 
+  country.onfocus = () => {
+    country.className = '';
+  };
+
   country.onblur = () => {
     if (country.validity.valid) {
       countryError.textContent = '';
@@ -70,6 +78,10 @@ const validateZip = (() => {
   const form = document.getElementsByTagName('form')[0];
   const zip = document.getElementById('user_zip');
   const zipError = document.getElementById('zipMsg');
+
+  zip.onfocus = () => {
+    zip.className = '';
+  };
 
   zip.onblur = () => {
     if (zip.validity.valid) {
@@ -114,10 +126,17 @@ const validatePassword = (() => {
 
   password.onfocus = () => {
     message.style.display = 'block';
+    password.className = '';
   };
 
   password.onblur = () => {
     message.style.display = 'none';
+    if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
+      password.className = 'invalid-field';
+    } else if (letterValid && capitalValid && numberValid && lengthValid) {
+      message.style.display = 'none';
+      password.className = 'valid-field';
+    }
   };
 
   password.addEventListener('input', (event) => {
@@ -168,14 +187,6 @@ const validatePassword = (() => {
     }
   });
 
-  password.onblur = () => {
-    if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
-      password.className = 'invalid-field';
-    }
-    message.style.display = 'none';
-    password.className = 'valid-field';
-  };
-
   form.addEventListener('submit', (event) => {
     if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
       document.getElementById('message').style.display = 'block';
@@ -189,14 +200,24 @@ const validateConfirmPassword = (() => {
   const confirmPassword = document.getElementById('user_confirm_password');
   const error = document.getElementById('confirmPass');
 
+  confirmPassword.onfocus = () => {
+    confirmPassword.className = '';
+  };
+
   confirmPassword.onblur = () => {
     error.style.display = 'none';
+    if (!(password.value === confirmPassword.value)) {
+      confirmPassword.className = 'invalid-field';
+    } else if (password.className === 'invalid-field') {
+      confirmPassword.className = 'invalid-field';
+    } else {
+      confirmPassword.className = 'valid-field';
+    }
   };
 
   confirmPassword.addEventListener('input', () => {
     if (password.value === confirmPassword.value) {
       error.style.display = 'none';
-      confirmPassword.className = 'valid-field';
     } else {
       error.style.display = 'block';
       error.textContent = 'Passwords do not match';
