@@ -8,7 +8,7 @@ const zipError = document.getElementById('zipMsg');
 const password = document.getElementById('user_password');
 const passwordError = document.getElementById('passwordMsg');
 const confirmPassword = document.getElementById('user_confirm_password');
-const confirmPasswordError = document.getElementById('passwordConfirmMessage');
+const confirmPasswordError = document.getElementById('confirmMsg');
 const error = document.getElementById('confirmPass');
 const resetBtn = document.getElementById('resetBtn');
 
@@ -127,6 +127,7 @@ const validatePassword = (() => {
   password.onfocus = () => {
     message.style.display = 'block';
     password.className = 'focused-field';
+    password.scrollIntoView();
   };
 
   password.onblur = () => {
