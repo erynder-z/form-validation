@@ -127,7 +127,10 @@ const validatePassword = (() => {
   password.onfocus = () => {
     message.style.display = 'block';
     password.className = 'focused-field';
-    password.scrollIntoView();
+    password.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+    });
   };
 
   password.onblur = () => {
@@ -217,7 +220,10 @@ const validatePassword = (() => {
 const validateConfirmPassword = (() => {
   confirmPassword.onfocus = () => {
     confirmPassword.className = 'focused-field';
-    confirmPassword.scrollIntoView();
+    confirmPassword.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+    });
   };
 
   confirmPassword.onblur = () => {
