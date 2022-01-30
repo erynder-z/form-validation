@@ -119,6 +119,7 @@ const validatePassword = (() => {
   const number = document.getElementById('number');
   const length = document.getElementById('length');
   const message = document.getElementById('message');
+  const passwordError = document.getElementById('passwordMsg');
   let letterValid;
   let capitalValid;
   let numberValid;
@@ -133,6 +134,7 @@ const validatePassword = (() => {
     message.style.display = 'none';
     if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
       password.className = 'invalid-field';
+      showError();
     } else if (letterValid && capitalValid && numberValid && lengthValid) {
       message.style.display = 'none';
       password.className = 'valid-field';
@@ -189,16 +191,29 @@ const validatePassword = (() => {
 
   form.addEventListener('submit', (event) => {
     if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
-      document.getElementById('message').style.display = 'block';
+      message.style.display = 'block';
       event.preventDefault();
     }
   });
+
+  function showError() {
+    if (password.validity.valueMissing) {
+      passwordError.textContent = 'You need to enter a password.';
+    } else {
+      passwordError.textContent =
+        'Password does not match the requierd pattern.';
+    }
+    passwordError.className = 'invalid';
+    password.className = 'invalid-field';
+  }
 })();
 
 const validateConfirmPassword = (() => {
+  const form = document.getElementsByTagName('form')[0];
   const password = document.getElementById('user_password');
   const confirmPassword = document.getElementById('user_confirm_password');
   const error = document.getElementById('confirmPass');
+  const confirmPasswordError = document.getElementById('confirmMsg');
 
   confirmPassword.onfocus = () => {
     confirmPassword.className = '';
@@ -207,11 +222,11 @@ const validateConfirmPassword = (() => {
   confirmPassword.onblur = () => {
     error.style.display = 'none';
     if (!(password.value === confirmPassword.value)) {
-      confirmPassword.className = 'invalid-field';
+      showError();
     } else if (password.className === 'invalid-field') {
-      confirmPassword.className = 'invalid-field';
+      showError();
     } else if (password.value === '') {
-      confirmPassword.className = 'invalid-field';
+      showError();
     } else {
       confirmPassword.className = 'valid-field';
     }
@@ -225,6 +240,23 @@ const validateConfirmPassword = (() => {
       error.textContent = 'Passwords do not match';
     }
   });
+
+  form.addEventListener('submit', (event) => {
+    if (!confirmPassword.validity.valid) {
+      showError();
+      event.preventDefault();
+    }
+  });
+
+  function showError() {
+    if (confirmPassword.validity.valueMissing) {
+      confirmPasswordError.textContent = 'You need to confirm the password';
+    } else {
+      confirmPasswordError.textContent = 'Passwords do not match';
+    }
+    confirmPasswordError.className = 'invalid';
+    confirmPassword.className = 'invalid-field';
+  }
 })();
 
 const resetButton = (() => {
