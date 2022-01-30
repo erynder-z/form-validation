@@ -210,6 +210,8 @@ const validateConfirmPassword = (() => {
       confirmPassword.className = 'invalid-field';
     } else if (password.className === 'invalid-field') {
       confirmPassword.className = 'invalid-field';
+    } else if (password.value === '') {
+      confirmPassword.className = 'invalid-field';
     } else {
       confirmPassword.className = 'valid-field';
     }
