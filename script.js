@@ -217,6 +217,7 @@ const validatePassword = (() => {
 const validateConfirmPassword = (() => {
   confirmPassword.onfocus = () => {
     confirmPassword.className = 'focused-field';
+    confirmPassword.scrollIntoView();
   };
 
   confirmPassword.onblur = () => {
