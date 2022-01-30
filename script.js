@@ -1,8 +1,18 @@
-const validateEmail = (() => {
-  const form = document.getElementsByTagName('form')[0];
-  const email = document.getElementById('user_email');
-  const emailError = document.getElementById('emailMsg');
+const form = document.getElementsByTagName('form')[0];
+const email = document.getElementById('user_email');
+const emailError = document.getElementById('emailMsg');
+const country = document.getElementById('user_country');
+const countryError = document.getElementById('countryMsg');
+const zip = document.getElementById('user_zip');
+const zipError = document.getElementById('zipMsg');
+const password = document.getElementById('user_password');
+const passwordError = document.getElementById('passwordMsg');
+const confirmPassword = document.getElementById('user_confirm_password');
+const confirmPasswordError = document.getElementById('passwordConfirmMessage');
+const error = document.getElementById('confirmPass');
+const resetBtn = document.getElementById('resetBtn');
 
+const validateEmail = (() => {
   email.onfocus = () => {
     email.className = 'focused-field';
   };
@@ -38,10 +48,6 @@ const validateEmail = (() => {
 })();
 
 const validateCountry = (() => {
-  const form = document.getElementsByTagName('form')[0];
-  const country = document.getElementById('user_country');
-  const countryError = document.getElementById('countryMsg');
-
   country.onfocus = () => {
     country.className = 'focused-field';
   };
@@ -75,10 +81,6 @@ const validateCountry = (() => {
 })();
 
 const validateZip = (() => {
-  const form = document.getElementsByTagName('form')[0];
-  const zip = document.getElementById('user_zip');
-  const zipError = document.getElementById('zipMsg');
-
   zip.onfocus = () => {
     zip.className = 'focused-field';
   };
@@ -112,14 +114,11 @@ const validateZip = (() => {
 })();
 
 const validatePassword = (() => {
-  const form = document.getElementsByTagName('form')[0];
-  const password = document.getElementById('user_password');
   const letter = document.getElementById('letter');
   const capital = document.getElementById('capital');
   const number = document.getElementById('number');
   const length = document.getElementById('length');
-  const message = document.getElementById('message');
-  const passwordError = document.getElementById('passwordMsg');
+  const message = document.getElementById('passwordMessage');
   let letterValid;
   let capitalValid;
   let numberValid;
@@ -215,12 +214,6 @@ const validatePassword = (() => {
 })();
 
 const validateConfirmPassword = (() => {
-  const form = document.getElementsByTagName('form')[0];
-  const password = document.getElementById('user_password');
-  const confirmPassword = document.getElementById('user_confirm_password');
-  const error = document.getElementById('confirmPass');
-  const confirmPasswordError = document.getElementById('confirmMsg');
-
   confirmPassword.onfocus = () => {
     confirmPassword.className = 'focused-field';
   };
@@ -266,18 +259,6 @@ const validateConfirmPassword = (() => {
 })();
 
 const resetButton = (() => {
-  const resetBtn = document.getElementById('resetBtn');
-  const email = document.getElementById('user_email');
-  const emailError = document.getElementById('emailMsg');
-  const country = document.getElementById('user_country');
-  const countryError = document.getElementById('countryMsg');
-  const zip = document.getElementById('user_zip');
-  const zipError = document.getElementById('zipMsg');
-  const password = document.getElementById('user_password');
-  const passwordError = document.getElementById('passwordMsg');
-  const confirmPassword = document.getElementById('user_confirm_password');
-  const confirmPasswordError = document.getElementById('confirmMsg');
-
   resetBtn.addEventListener('click', () => {
     email.className = '';
     emailError.textContent = '';
