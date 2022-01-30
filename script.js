@@ -224,3 +224,20 @@ const validateConfirmPassword = (() => {
     }
   });
 })();
+
+const resetButton = (() => {
+  const resetBtn = document.getElementById('resetBtn');
+  const email = document.getElementById('user_email');
+  const country = document.getElementById('user_country');
+  const zip = document.getElementById('user_zip');
+  const password = document.getElementById('user_password');
+  const confirmPassword = document.getElementById('user_confirm_password');
+
+  resetBtn.addEventListener('click', () => {
+    email.className = '';
+    country.className = '';
+    zip.className = '';
+    password.className = '';
+    confirmPassword.className = '';
+  });
+})();
