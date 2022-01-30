@@ -4,7 +4,7 @@ const validateEmail = (() => {
   const emailError = document.getElementById('emailMsg');
 
   email.onfocus = () => {
-    email.className = '';
+    email.className = 'focused-field';
   };
 
   email.onblur = () => {
@@ -43,7 +43,7 @@ const validateCountry = (() => {
   const countryError = document.getElementById('countryMsg');
 
   country.onfocus = () => {
-    country.className = '';
+    country.className = 'focused-field';
   };
 
   country.onblur = () => {
@@ -80,7 +80,7 @@ const validateZip = (() => {
   const zipError = document.getElementById('zipMsg');
 
   zip.onfocus = () => {
-    zip.className = '';
+    zip.className = 'focused-field';
   };
 
   zip.onblur = () => {
@@ -127,7 +127,7 @@ const validatePassword = (() => {
 
   password.onfocus = () => {
     message.style.display = 'block';
-    password.className = '';
+    password.className = 'focused-field';
   };
 
   password.onblur = () => {
@@ -189,6 +189,12 @@ const validatePassword = (() => {
     }
   });
 
+  password.addEventListener('input', (event) => {
+    if (letterValid && capitalValid && numberValid && lengthValid) {
+      passwordError.textContent = '';
+    }
+  });
+
   form.addEventListener('submit', (event) => {
     if (!letterValid || !capitalValid || !numberValid || !lengthValid) {
       message.style.display = 'block';
@@ -216,7 +222,7 @@ const validateConfirmPassword = (() => {
   const confirmPasswordError = document.getElementById('confirmMsg');
 
   confirmPassword.onfocus = () => {
-    confirmPassword.className = '';
+    confirmPassword.className = 'focused-field';
   };
 
   confirmPassword.onblur = () => {
@@ -262,16 +268,26 @@ const validateConfirmPassword = (() => {
 const resetButton = (() => {
   const resetBtn = document.getElementById('resetBtn');
   const email = document.getElementById('user_email');
+  const emailError = document.getElementById('emailMsg');
   const country = document.getElementById('user_country');
+  const countryError = document.getElementById('countryMsg');
   const zip = document.getElementById('user_zip');
+  const zipError = document.getElementById('zipMsg');
   const password = document.getElementById('user_password');
+  const passwordError = document.getElementById('passwordMsg');
   const confirmPassword = document.getElementById('user_confirm_password');
+  const confirmPasswordError = document.getElementById('confirmMsg');
 
   resetBtn.addEventListener('click', () => {
     email.className = '';
+    emailError.textContent = '';
     country.className = '';
+    countryError.textContent = '';
     zip.className = '';
+    zipError.textContent = '';
     password.className = '';
+    passwordError.textContent = '';
     confirmPassword.className = '';
+    confirmPasswordError.textContent = '';
   });
 })();

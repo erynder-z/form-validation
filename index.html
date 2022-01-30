@@ -22,6 +22,7 @@
             required
             minlength="8"
           />
+          <div id="emailMsg"></div>
         </div>
         <div class="wrapper">
           <label for="user_country">Country*</label>
@@ -33,6 +34,7 @@
             required
             pattern="[A-Za-z]{1,}"
           />
+          <div id="countryMsg"></div>
         </div>
         <div class="wrapper">
           <label for="user_zip">ZIP-Code*</label>
@@ -44,6 +46,7 @@
             required
             pattern="[a-zA-Z0-9_.-]{1,}"
           />
+          <div id="zipMsg"></div>
         </div>
         <div class="wrapper">
           <label for="user_password">Password*</label>
@@ -55,6 +58,7 @@
             required
             patern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           />
+          <div id="passwordMsg"></div>
         </div>
         <div class="wrapper">
           <label for="user_confirm_password"> Confirm password*</label>
@@ -65,16 +69,13 @@
             placeholder="must be same as above"
             required
           />
+          <div id="confirmMsg"></div>
         </div>
         <div class="button-wrapper">
           <button id="resetBtn" class="resetBtn" type="reset">Reset</button>
           <button id="submitBtn" class="submitBtn" type="submit">Submit</button>
         </div>
-        <div id="emailMsg"></div>
-        <div id="countryMsg"></div>
-        <div id="zipMsg"></div>
-        <div id="passwordMsg"></div>
-        <div id="confirmMsg"></div>
+
         <div id="message">
           <h3>Password must contain the following:</h3>
           <p id="letter" class="invalid">A lowercase letter</p>
